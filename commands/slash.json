@@ -1,0 +1,42 @@
+[
+  {
+    "name": "game",
+    "type": 1,
+    "description": "Access the mini-games menu",
+    "options": [
+      {
+        "name": "game",
+        "type": 3,
+        "description": "Pick your game",
+        "required": true,
+        "choices": [
+          {
+            "name": "Mastermind",
+            "value": "game_mastermind"
+          }
+        ]
+      },
+      {
+        "name": "action",
+        "type": 3,
+        "description": "Chose the action",
+        "required": true,
+        "choices": [
+          {
+            "name": "Play",
+            "value": "action_play"
+          },
+          {
+            "name": "Rules",
+            "value": "action_rules"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "help",
+    "type": 1,
+    "description": "Get some information about the bot"
+  }
+]
