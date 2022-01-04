@@ -3,8 +3,8 @@
   const fs = require("fs");
   const token = fs.readFileSync(".token");
 
-  const Bot = require("./lib/ds.js");
-  const bot = new Bot(token);
+  const ds = require("./lib/ds.js");
+  const bot = new ds.Bot(token);
 
   const me = await bot.user();
   console.log("Registering commands for " + me.username);

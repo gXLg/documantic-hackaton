@@ -1,5 +1,5 @@
 async function run(bot, data){
-  let t = [
+  const t = [
     "**:grin: About me**",
     "> I am a small discord bot with some minigames to make your day better.",
     "**:scroll: Credits**",
@@ -16,7 +16,7 @@ async function run(bot, data){
       }
     ]
   };
-  const result = await bot.commands_edit_response(data.token, message);
+  const result = await bot.commandsEditResponse(data.token, message);
 }
 
-module.exports = run
+module.exports = run;

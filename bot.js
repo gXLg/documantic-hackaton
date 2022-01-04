@@ -8,8 +8,8 @@
   const fs = require("fs");
   const token = fs.readFileSync(".token", "UTF-8");
 
-  const Bot = require("./lib/ds.js");
-  const bot = new Bot(token);
+  const ds = require("./lib/ds.js");
+  const bot = new ds.Bot(token);
 
   const me = await bot.user();
   console.log("Logging in as " + me.username + "...");
@@ -19,12 +19,12 @@
   }
 
   bot.events["INTERACTION_CREATE"] = async data => {
-    if(data.application_id == me.id){
-      await bot.commands_deferred(data.id, data.token);
-      require_("./commands/" + data.data.name)(bot, data)
-    }
+    if(data.application_id != me.id) return;
+    if(!data.data.name) return;
+    await bot.commandsDeferred(data.id, data.token);
+    require_("./commands/" + data.data.name)(bot, data)
   }
 
-  bot.login(0);
+  bot.login(1 << 10);
 
 })();
