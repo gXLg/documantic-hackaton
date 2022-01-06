@@ -13,6 +13,10 @@
           {
             "name": "Mastermind",
             "value": "game_mastermind"
+          },
+          {
+            "name": "Rubik's Cube",
+            "value": "game_rubiks"
           }
         ]
       },
@@ -23,11 +27,11 @@
         "required": true,
         "choices": [
           {
-            "name": "Play",
+            "name": "Play the game",
             "value": "action_play"
           },
           {
-            "name": "Rules",
+            "name": "Read rules",
             "value": "action_rules"
           }
         ]

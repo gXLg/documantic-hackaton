@@ -1,5 +1,7 @@
 (async () => {
 
+  // requiring without cache
+  // made for requiring commands and applying edits without restarting the bot
   function require_(module){
     delete require.cache[require.resolve(module)];
     return require(module);
@@ -19,12 +21,14 @@
   }
 
   bot.events["INTERACTION_CREATE"] = async data => {
+    // if the interaction is a slash command
     if(data.application_id != me.id) return;
     if(!data.data.name) return;
     await bot.commandsDeferred(data.id, data.token);
-    require_("./commands/" + data.data.name)(bot, data)
+    require_("./commands/" + data.data.name)(bot, data, require_);
   }
 
-  bot.login(1 << 10);
+  // logging in without intents
+  bot.login(0);
 
 })();
