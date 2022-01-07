@@ -45,9 +45,19 @@ async function run(bot, data, require_){
         "> This 3D puzzle was invented by Ernő Rubik in 1974 and is still " +
         "popular nowadays.",
         "**:pencil: Gameplay and Rules**",
-        "> Try to solve the cube. There are a lot of tutorials on the internet.",
+        "> Try and play around with the cube, no rules, let your imagination " +
+        "free will and create a nice pattern, or scramble and solve it " +
+        "like a professional!",
         "**:video_game: Control**",
-        "> ."
+        "> Each letter represents one side, a letter alone means " +
+        "'the side will be turned by 90 degrees clockwise', " +
+        "a letter with a single quote means 'counter-clockwise'",
+        "> F - Front",
+        "> U - Up",
+        "> L - Left",
+        "> B - Back",
+        "> D - Down",
+        "> R - Right"
       ].join("\n");
 
       message.embeds[0].description = t;

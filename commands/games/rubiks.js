@@ -70,6 +70,105 @@ async function run(bot, data, message){
     cube.R = R;
   }
 
+  function up(){
+    const U = [...cube.U];
+    const L = [...cube.L];
+    const F = [...cube.F];
+    const R = [...cube.R];
+    const B = [...cube.B];
+    const t = [...L];
+    cube.U = [U[6], U[3], U[0],
+              U[7], U[4], U[1],
+              U[8], U[5], U[2]];
+    [L[0], L[1], L[2]] = [F[0], F[1], F[2]];
+    [F[0], F[1], F[2]] = [R[0], R[1], R[2]];
+    [R[0], R[1], R[2]] = [B[8], B[7], B[6]];
+    [B[8], B[7], B[6]] = [t[0], t[1], t[2]];
+    cube.L = L;
+    cube.F = F;
+    cube.R = R;
+    cube.B = B;
+  }
+
+  function left(){
+    const L = [...cube.L];
+    const U = [...cube.U];
+    const B = [...cube.B];
+    const D = [...cube.D];
+    const F = [...cube.F];
+    const t = [...U];
+    cube.L = [L[6], L[3], L[0],
+              L[7], L[4], L[1],
+              L[8], L[5], L[2]];
+    [U[0], U[3], U[6]] = [B[0], B[3], B[6]];
+    [B[0], B[3], B[6]] = [D[0], D[3], D[6]];
+    [D[0], D[3], D[6]] = [F[0], F[3], F[6]];
+    [F[0], F[3], F[6]] = [t[0], t[3], t[6]];
+    cube.U = U;
+    cube.B = B;
+    cube.D = D;
+    cube.F = F;
+  }
+
+  function back(){
+    const B = [...cube.B];
+    const U = [...cube.U];
+    const R = [...cube.R];
+    const D = [...cube.D];
+    const L = [...cube.L];
+    const t = [...U];
+    cube.B = [B[6], B[3], B[0],
+              B[7], B[4], B[1],
+              B[8], B[5], B[2]];
+    [U[0], U[1], U[2]] = [R[2], R[5], R[8]];
+    [R[2], R[5], R[8]] = [D[8], D[7], D[6]];
+    [D[8], D[7], D[6]] = [L[6], L[3], L[0]];
+    [L[6], L[3], L[0]] = [t[0], t[1], t[2]];
+    cube.U = U;
+    cube.R = R;
+    cube.D = D;
+    cube.L = L;
+  }
+
+  function down(){
+    const D = [...cube.D];
+    const L = [...cube.L];
+    const B = [...cube.B];
+    const R = [...cube.R];
+    const F = [...cube.F];
+    const t = [...L];
+    cube.D = [D[6], D[3], D[0],
+              D[7], D[4], D[1],
+              D[8], D[5], D[2]];
+    [L[6], L[7], L[8]] = [B[2], B[1], B[0]];
+    [B[2], B[1], B[0]] = [R[6], R[7], R[8]];
+    [R[6], R[7], R[8]] = [F[6], F[7], F[8]];
+    [F[6], F[7], F[8]] = [t[6], t[7], t[8]];
+    cube.L = L;
+    cube.B = B;
+    cube.R = R;
+    cube.F = F;
+  }
+
+  function right(){
+    const R = [...cube.R];
+    const U = [...cube.U];
+    const F = [...cube.F];
+    const D = [...cube.D];
+    const B = [...cube.B];
+    const t = [...U];
+    cube.R = [R[6], R[3], R[0],
+              R[7], R[4], R[1],
+              R[8], R[5], R[2]];
+    [U[2], U[5], U[8]] = [F[2], F[5], F[8]];
+    [F[2], F[5], F[8]] = [D[2], D[5], D[8]];
+    [D[2], D[5], D[8]] = [B[2], B[5], B[8]];
+    [B[2], B[5], B[8]] = [t[2], t[5], t[8]];
+    cube.U = U;
+    cube.F = F;
+    cube.D = D;
+    cube.B = B;
+  }
 
   const comp = [
     {
@@ -82,6 +181,58 @@ async function run(bot, data, message){
           "type": 2, "style": 2, "custom_id": "turn_up",
           "label": "U", "emoji": { "name": lue[cube.U[4]] }
         },
+        {
+          "type": 2, "style": 2, "custom_id": "turn_left",
+          "label": "L", "emoji": { "name": lue[cube.L[4]] }
+        }
+      ]
+    },
+    {
+      "type": 1, "components": [
+        {
+          "type": 2, "style": 2, "custom_id": "cturn_front",
+          "label": "F'", "emoji": { "name": lue[cube.F[4]] }
+        },
+        {
+          "type": 2, "style": 2, "custom_id": "cturn_up",
+          "label": "U'", "emoji": { "name": lue[cube.U[4]] }
+        },
+        {
+          "type": 2, "style": 2, "custom_id": "cturn_left",
+          "label": "L'", "emoji": { "name": lue[cube.L[4]] }
+        }
+      ]
+    },
+    {
+      "type": 1, "components": [
+        {
+          "type": 2, "style": 2, "custom_id": "turn_back",
+          "label": "B", "emoji": { "name": lue[cube.B[4]] }
+        },
+        {
+          "type": 2, "style": 2, "custom_id": "turn_down",
+          "label": "D", "emoji": { "name": lue[cube.D[4]] }
+        },
+        {
+          "type": 2, "style": 2, "custom_id": "turn_right",
+          "label": "R", "emoji": { "name": lue[cube.R[4]] }
+        }
+      ]
+    },
+    {
+      "type": 1, "components": [
+        {
+          "type": 2, "style": 2, "custom_id": "cturn_back",
+          "label": "B'", "emoji": { "name": lue[cube.B[4]] }
+        },
+        {
+          "type": 2, "style": 2, "custom_id": "cturn_down",
+          "label": "D'", "emoji": { "name": lue[cube.D[4]] }
+        },
+        {
+          "type": 2, "style": 2, "custom_id": "cturn_right",
+          "label": "R'", "emoji": { "name": lue[cube.R[4]] }
+        }
       ]
     }
   ];
@@ -117,6 +268,40 @@ async function run(bot, data, message){
 
     if(name == "turn_front"){
       front();
+    } else if(name == "cturn_front"){
+      front();
+      front();
+      front();
+    } else if(name == "turn_up"){
+      up();
+    } else if(name == "cturn_up"){
+      up();
+      up();
+      up();
+    } else if(name == "turn_left"){
+      left();
+    } else if(name == "cturn_left"){
+      left();
+      left();
+      left();
+    } else if(name == "turn_back"){
+      back();
+    } else if(name == "cturn_back"){
+      back();
+      back();
+      back();
+    } else if(name == "turn_down"){
+      down();
+    } else if(name == "cturn_down"){
+      down();
+      down();
+      down();
+    } else if(name == "turn_right"){
+      right();
+    } else if(name == "cturn_right"){
+      right();
+      right();
+      right();
     }
 
     message.embeds[0].description = gett();
