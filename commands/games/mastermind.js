@@ -229,10 +229,11 @@ async function run(bot, data, message){
 
   // closing the game
   if(finish){
-    board.splice(0, 10, [...thought, "40"]);
     if(cur[0] < 0){
+      board.splice(0, 10, [...thought, -1]);
       message.embeds[0].description = gett("> You lost, the combination was:");
     } else {
+      board.splice(0, cur[0]);
       message.embeds[0].description = gett("> You won and could guess the combination in " + (10 - cur[0]) + " steps!");
     }
 
