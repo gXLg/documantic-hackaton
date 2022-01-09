@@ -37,7 +37,8 @@ async function run(bot, data, require_){
       ].join("\n");
 
       message.embeds[0].description = t;
-      const result = await bot.commandsEditResponse(data.token, message);
+      //const result = await bot.commandsEditResponse(data.token, message);
+      const result = await bot.commandsResponse(data.id, data.token, message);
       return;
     } else if(options.game == "game_rubiks"){
       const t = [
@@ -61,8 +62,9 @@ async function run(bot, data, require_){
       ].join("\n");
 
       message.embeds[0].description = t;
-      const result = await bot.commandsEditResponse(data.token, message);
-      result;
+      //const result = await bot.commandsEditResponse(data.token, message);
+      const result = await bot.commandsResponse(data.id, data.token, message);
+      return;
     }
   } else if(options.action == "action_play"){
     const game = options.game.split("_")[1];

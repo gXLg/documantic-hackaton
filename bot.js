@@ -18,13 +18,22 @@
 
   bot.events["READY"] = data => {
     console.log("Bot logged in!");
+    bot.setStatus({
+      "status" : "online",
+      "since" : 0,
+      "afk" : false,
+      "activities" : [{
+        "name" : "games",
+        "type" : 0
+      }]
+    });
   }
 
   bot.events["INTERACTION_CREATE"] = async data => {
     // if the interaction is a slash command
     if(data.application_id != me.id) return;
     if(!data.data.name) return;
-    await bot.commandsDeferred(data.id, data.token);
+    //await bot.commandsDeferred(data.id, data.token);
     require_("./commands/" + data.data.name)(bot, data, require_);
   }
 

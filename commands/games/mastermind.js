@@ -127,7 +127,9 @@ async function run(bot, data, message){
   message.embeds[0].description = gett();
   message.components = comp;
 
-  const result = await bot.commandsEditResponse(data.token, message);
+  //const result = await bot.commandsEditResponse(data.token, message);
+  await bot.commandsResponse(data.id, data.token, message);
+  const result = await bot.commandsGetResponse(data.token);
   //console.log(result);
   const mid = result.id;
   const cid = result.channel_id;
@@ -150,7 +152,7 @@ async function run(bot, data, message){
     );
     if(!button) break;
 
-    await bot.commandsDeferredWithCom(button.id, button.token);
+    //await bot.commandsDeferredWithCom(button.id, button.token);
     const name = button.data.custom_id;
     if(name == "delete"){
       if(cur[1] == 0) continue;
@@ -223,7 +225,8 @@ async function run(bot, data, message){
     }
 
     message.embeds[0].description = gett();
-    await bot.commandsEditResponse(button.token, message);
+    //await bot.commandsEditResponse(button.token, message);
+    await bot.commandsComResponse(button.id, button.token, message);
 
   }
 

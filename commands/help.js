@@ -16,7 +16,8 @@ async function run(bot, data){
       }
     ]
   };
-  const result = await bot.commandsEditResponse(data.token, message);
+  //const result = await bot.commandsEditResponse(data.token, message);
+  const result = await bot.commandsResponse(data.id, data.token, message);
 }
 
 module.exports = run;

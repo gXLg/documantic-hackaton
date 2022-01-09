@@ -3,13 +3,17 @@ A discord bot for Documantic Hackaton.
 The task was to create a bot with minigames.
 
 # Usage
+If you want to use the code yourself
 1) Create and invite bot with `3072` permission.
 2) Clone the repo and put bot token into the file `.token`
 3) Setup the emojis, because they are private
 4) Register the slash commands with `node register.js`
 5) Start the bot with `node .`
 
-The dependencies are the `ws`, and `https` modules.
+The dependencies are the `ws`, and `https` modules, which are stored in `node_modules`.
+
+# Special
+This bot does not use a discord lib, what I am really proud of.
 
 # Games
 As already mentioned, bot's main feature is a collection
@@ -25,5 +29,5 @@ on a message.
 An old puzzle game about decoding a color combination.
 
 ## Rubik's Cube
-A real rubik's cube sent as a message, to rurn around,
+A real rubik's cube sent as a message to rurn around,
 scramble and solve.
